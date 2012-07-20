@@ -4,8 +4,8 @@
 'Description : Are you experiencing hangups with Internet Explorer when using it to monitor, let's say, 
 '            : a build server's status page? Perhaps this script can help.
 '            :
-'            : This script makes Internet Explorer to continually navigate to an url, wait a specified
-'            : number of seconds, close Internet explorer and repeat the same process after waiting for 5 seconds.
+'            : This script makes IE to continually navigate to an url, wait a specified
+'            : number of seconds, close IE and repeat the same process after waiting for 5 seconds.
 '----------------------------------------------------------------------------------------------------------------------------
 
 Option Explicit 
