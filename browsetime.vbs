@@ -1,41 +1,35 @@
 '----------------------------------------------------------------------------------------------------------------------------
 'Script Name : browsetime.vbs   
 'Author      : Magnus Ljadas (Original author Matthew Beattie)   
-'Description : This script makes Internet Explorer to continually navigate to a url, wait a specified
+'Description : Are you experiencing hangups with Internet Explorer when using it to monitor, let's say, 
+'            : a build server's status page? Perhaps this script can help.
+'            :
+'            : This script makes Internet Explorer to continually navigate to an url, wait a specified
 '            : number of seconds, close Internet explorer and repeat the same process after waiting for 5 seconds.
 '----------------------------------------------------------------------------------------------------------------------------
-'Initialization  Section   
-'----------------------------------------------------------------------------------------------------------------------------
+
 Option Explicit 
 Dim WshShell
+
 On Error Resume Next      
-   Set wshShell = CreateObject("Wscript.Shell")
+   Set WshShell = CreateObject("Wscript.Shell")
    If Err.Number <> 0 Then
       Wscript.Quit
    End If
 On Error Goto 0
-'----------------------------------------------------------------------------------------------------------------------------
-'Main Processing Section   
-'----------------------------------------------------------------------------------------------------------------------------
+
 On Error Resume Next     
    ProcessScript
    If Err.Number <> 0 Then
       Wscript.Quit
    End If
 On Error Goto 0
-'----------------------------------------------------------------------------------------------------------------------------
-'Functions Processing Section
-'----------------------------------------------------------------------------------------------------------------------------
-'Name       : ProcessScript -> Primary Function that controls all other script processing.
-'Parameters : None          -> 
-'Return     : None          ->
-'----------------------------------------------------------------------------------------------------------------------------
+
 Function ProcessScript
    Dim browseTime, url
-   browseTime  = 15
+   browseTime  = 60
 
-   If WScript.Arguments.Count = 1 Then
-      Wscript.Echo "Fooo"
+   If WScript.Arguments.Count > 0  Then
       url = WScript.Arguments.Item(0)
    Else
       Wscript.Echo "Usage: browsetime.vbs url [browse time in seconds (default 60)]"
@@ -53,6 +47,7 @@ Function ProcessScript
       Wscript.Sleep 5000
    Loop
 End Function
+
 '----------------------------------------------------------------------------------------------------------------------------
 'Name       : NavigateBrowser -> Creates an instance of Internet Explorer and browses the specfied URL for a specified time.   
 'Parameters : url             -> String containing the URL to navigate to.
@@ -98,4 +93,3 @@ Function NavigateBrowser(url, ByVal browseTime)
    On Error Goto 0
    NavigateBrowser = True
 End Function
-'----------------------------------------------------------------------------------------------------------------------------
